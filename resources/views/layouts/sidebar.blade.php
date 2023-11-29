@@ -12,10 +12,10 @@
           <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
           <ul class="dropdown-menu">
             <li>
-                <a class="nav-link" href="index-0.html">Category</a>
+                <a class="nav-link" href="{{ route('categories.index') }}">Category</a>
             </li>
             <li>
-                <a class="nav-link" href="index.html">Blog Post</a>
+                <a class="nav-link" href="{{ route('posts.index')}}">Blog Post</a>
             </li>
           </ul>
         </li>
