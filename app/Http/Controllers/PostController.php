@@ -46,7 +46,8 @@ class PostController extends Controller
         Post::create([
             'title'     => $request->title,
             'content'   => $request->content,
-            'category_id'   => $request->category_id
+            'category_id'   => $request->category_id,
+            'visits'    => 0
         ]);
 
         return redirect()->route('posts.index')->with(['success' => 'Data have been saved!']);
