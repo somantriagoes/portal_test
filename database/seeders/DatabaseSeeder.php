@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         \App\Models\User::factory(10)->create();
+        \App\Models\Category::factory(10)->create();
 
         \App\Models\User::factory()->create([
             'name'=>'Agus Somantri',
@@ -23,5 +24,10 @@ class DatabaseSeeder extends Seeder
             'email_verified_at'=>now(),
             'password'=>Hash::make('12345678'),
         ]);
+
+        $this->call([
+            PostSeeder::class,
+        ]);
+
     }
 }
