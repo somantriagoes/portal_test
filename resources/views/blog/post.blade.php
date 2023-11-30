@@ -47,7 +47,7 @@
                                     <th scope="col" class="text-center">Title</th>
                                     <th scope="col" class="text-center">Category Name</th>
                                     <th scope="col" class="text-center">Content</th>
-                                    <th scope="col" class="text-center">Action</th>
+                                    <th scope="col" class="text-center" width="15%">Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>

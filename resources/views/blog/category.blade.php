@@ -45,7 +45,7 @@
                                 <thead>
                                   <tr>
                                     <th scope="col" class="text-center">Category Name</th>
-                                    <th scope="col" class="text-center">Action</th>
+                                    <th scope="col" class="text-center" width="25%">Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>
