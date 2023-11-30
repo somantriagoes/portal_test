@@ -44,17 +44,17 @@
                             <table class="table table-bordered">
                                 <thead>
                                   <tr>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Category Name</th>
-                                    <th scope="col">Content</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" class="text-center">Title</th>
+                                    <th scope="col" class="text-center">Category Name</th>
+                                    <th scope="col" class="text-center">Content</th>
+                                    <th scope="col" class="text-center">Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   @forelse ($posts as $post)
                                     <tr>
                                         <td>{{ $post->title }}</td>
-                                        <td>{{ $post->category_id }}</td>
+                                        <td>{{ $post->category['name'] }}</td>
                                         <td>{{ $post->content }}</td>
                                         <td class="text-center">
                                             <form onsubmit="return confirm('Are you sure delete this data ?');" action="{{ route('posts.destroy', $post->id) }}" method="POST">

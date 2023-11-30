@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
@@ -14,6 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
+
         $posts = Post::latest()->paginate(5);
         return view('blog.post',compact('posts'));
     }
@@ -23,7 +26,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('blog.create_post');
+        $categories = Category::orderBy('name', 'asc')->get()->pluck('name', 'id');
+
+        return view('blog.create_post', ['categories' => $categories]);
     }
 
     /**
@@ -35,13 +40,13 @@ class PostController extends Controller
         $this->validate($request, [
             'title'     => 'required',
             'content'   => 'required',
-            //'category_id' => 1
+            'category_id' => 'required'
         ]);
 
         Post::create([
             'title'     => $request->title,
             'content'   => $request->content,
-            'category_id'   => 1
+            'category_id'   => $request->category_id
         ]);
 
         return redirect()->route('posts.index')->with(['success' => 'Data have been saved!']);
@@ -61,7 +66,10 @@ class PostController extends Controller
     public function edit(string $id) : View
     {
         $post = Post::findOrFail($id);
-        return View('blog.edit_post', compact('post'));
+
+        $categories = Category::orderBy('name', 'asc')->get()->pluck('name', 'id');
+
+        return View('blog.edit_post', compact('post', 'categories'));
     }
 
     /**
@@ -71,14 +79,16 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title'     => 'required',
-            'content'   => 'required'
+            'content'   => 'required',
+            'category_id'   => 'required'
         ]);
 
         $post = Post::findOrFail($id);
 
         $post->update([
             'title'     => $request->title,
-            'content'   => $request->content
+            'content'   => $request->content,
+            'category_id'   => $request->category_id
         ]);
 
         return redirect()->route('posts.index')->with(['success' => 'data changed successfully!']);

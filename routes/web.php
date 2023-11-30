@@ -16,13 +16,31 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(!Auth::user()) {
+        return view('auth.login');
+    } else{
+        return view('dashboard.home');
+    }
 });
 
-Route::get('/', function () {
-    return view('dashboard.home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('home', function () {
+        return view('dashboard.home');
+    });
+    Route::get('/dashboard', function () {
+        return view('layouts.app');
+    });
 });
 
-Route::resource('categories', CategoryController::class);
+Route::group(['middleware' => 'auth'], function(){
+    Route::resource('categories', CategoryController::class);
+    Route::resource('posts', PostController::class);
+});
 
-Route::resource('posts', PostController::class);
+// Route::get('/login', function () {
+//     return view('auth.login');
+// })->name("login");
+
+// Route::get('/register', function () {
+//     return view('auth.register');
+// })->name("register");

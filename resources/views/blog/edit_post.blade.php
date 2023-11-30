@@ -52,6 +52,16 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <div class="input-group">
+                                      <select class="form-control" id="category_id" name="category_id">
+                                          @foreach ($categories as $categoryID => $categoryName)
+                                          <option value="{{ $categoryID }}" {{ ($categoryID == $post->category_id) ? 'selected' : '' }}>{{ $categoryName }}</option>
+                                          @endforeach
+                                      </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="font-weight-bold">Content</label>
                                     <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Content">{{ old('post content', $post->content) }}</textarea>
 

@@ -44,8 +44,8 @@
                             <table class="table table-bordered">
                                 <thead>
                                   <tr>
-                                    <th scope="col">Category Name</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" class="text-center">Category Name</th>
+                                    <th scope="col" class="text-center">Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>
